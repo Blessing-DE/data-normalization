@@ -1,172 +1,130 @@
-# Introduction
-Data lies at the heart of every modern system — but raw, unstructured data often carries redundancy, inconsistency, and inefficiency. To truly unlock its value, we need a structured approach to organizing it. This project demonstrates data modelling with normalization, transforming messy, repetitive datasets into well-designed relational models that are efficient, consistent, and scalable.
+## Introduction
+Data lies at the heart of every modern system. Yet, raw and unstructured data often carries redundancy, inconsistency, and inefficiency. To maximize its value, we need a structured approach to organizing it.
 
-Starting from 1NF (First Normal Form) and progressing to 3NF (Third Normal Form), this project walks through step-by-step normalization with illustrative examples. You’ll see how a single unoptimized table evolves into a relational schema where:
+This project aims to demonstrate data modeling with normalization, showing how to transform messy, repetitive datasets into well-designed relational models that are:
 
-- Redundancy is minimized
-- Dependencies are properly managed
-- Data integrity is preserved
-- Queries become simpler and better
+- Efficient (no repeated updates)
+- Consistent (no conflicting values)
+- Scalable (supporting growth without complexity)
+- Easy to query (faster and cleaner SQL)
 
-By the end, you’ll not only understand why normalization matters, but also how to apply it in real-world scenarios such as sales transactions, customer management, and inventory systems. 
+We walk through the normalization process step-by-step, starting with 1NF (First Normal Form) and progressing to 3NF (Third Normal Form), using real-world scenarios.
 
+### What is Normalization?
 
-## About this project
-This project explores five real-world industry scenarios, each starting with raw, unstructured data in 1NF and evolving into fully normalized tables in 3NF.
+Normalization is the process of organizing data in a database to reduce redundancy and improve integrity.
 
-The industries covered include:
+#### First Normal Form (1NF): The following are criterias for a data structure to be in its first Normal Form
 
-- *Flight & Airline Operations* – managing flights, passengers, and bookings
+- Each cell must contain atomic (indivisible) values.
+- No repeating groups or arrays.
+- Each record is unique (primary key defined).
 
-- *Fleet Operations* – tracking vehicles, drivers, and maintenance activities
+#### Second Normal Form (2NF): The following are criterias for a data structure to be in its second Normal Form
+- Must already be in 1NF.
+- Removes partial dependencies (non-key attributes depending only on part of a composite key).
+- Entities are separated into different tables.
 
-- *E-commerce (B2B & B2C)* – handling customers, products, and orders
+#### Third Normal Form (3NF): The following are criterias for a data structure to be in its second Normal Form
+- Must already be in 2NF.
+- Removes transitive dependencies (non-key attributes depending on other non-key attributes).
+- Every non-key attribute depends only on the primary key.
 
-- *Fintech* – managing customers, accounts, and transactions
+*The goal is to design our tables into clean relational model with minimal redundancy and maximum consistency*
 
-- *Foodtech* – organizing restaurants, menus, and orders
+### About This Project
 
-For each scenario, we:
+This project explores four real-world industry scenarios, each beginning with raw, unstructured data in 1NF and evolving into fully normalized tables in 3NF.
 
-* Begin with a flat table (1NF) that contains redundancies and anomalies.
+#### Industries Covered
+- Flight & Airline Operations – managing flights, passengers, and bookings
+- Fleet Operations – tracking vehicles, drivers, and maintenance activities
+- E-commerce (B2B & B2C) – handling customers, products, and orders
+- Fintech – managing customers, accounts, and transactions
 
-* Restructure into 2NF by separating entities and removing partial dependencies.
+#### Normalization Process
+For each scenario, we will:
+- Start in 1NF – flat, redundant tables.
+- Move to 2NF – separate entities, remove partial dependencies.
+- Achieve 3NF – remove transitive dependencies, create a relational schema.
 
-* Refine into 3NF by removing transitive dependencies and ensuring clean relational models.
+### Case Studies
+#### Case Study 1: Flight & Airline Operations
+Imagine AirXpress, a regional airline where bookings are stored in a single spreadsheet.
 
+##### Problems in 1NF
+- Passenger and airline names repeat for every booking.
+- Updates require editing hundreds of rows.
+- Queries are messy and inefficient.
 
-###  Case Study 1: Flight & Airline Operations
+**Step 1:  1NF (Flat Table)**
+![1NF](flight_1NF.svg)
 
-Imagine AirXpress, a fast-growing regional airline, where booking agents record all passenger details in a single spreadsheet. Every booking lists the passenger’s name, contact, flight number, seat, destination, airline name, and price.
+**Step 2: 2NF (Remove Partial Dependencies)**
+![2NF](flight_2NF.svg)
+- Creates passengers table that stores passenger information.
+- Creates flights table stores flight details.
+- Creates bookings tables link passengers to flights.
+- Creates airlines table stores the airlines particularly.
 
-At first, this works fine. But soon, patterns of redundancy appear:
+**Step 3: 3NF (Remove Transitive Dependencies)**
+![3NF](flight_3NF.svg)
+- Creates routes table stores data of all routes and links to the flights table
 
-- Every passenger on flight F101 repeats the Airline Name and Flight Details.
+*Result: Thousands of bookings managed without redundant updates.*
 
-- If the airline changes its name, hundreds of rows must be updated.
+#### Case Study 2: Fleet Operations
+LogiFleet, a logistics company with 200+ vehicles, tracks drivers, vehicles, and services in one sheet.
 
-- Queries  become messy.
+##### Problems in 1NF
+- Vehicle maintenance repeated.
+- Driver names duplicated.
+- Mechanic names inconsistent.
 
-By normalizing the data:
+**Step 1: 1NF (Flat Table)**
+![1NF](maintenance_1NF.svg)
 
-- Passenger details are separated into a Passengers table.
+**Step 2: 2NF**
+![2NF](maintenance_2NF.svg)
+- Separate Drivers, Vehicles, Mechanics & Services.
 
-- Flight details live in a Flights table.
+**Step 3: 3NF**
+![3NF](maintenance_3NF.svg)
+- Create Service Cost table for standardization.
 
-- Bookings link passengers to flights with seats.
+*Result: Easy reporting of cost per vehicle, driver history, etc.*
 
-- Airline names are managed in a clean Airlines table.
+#### Case Study 3: E-commerce (B2B & B2C)
+ShopHub, an online store, tracks all orders in a single Excel sheet.
 
-- Suddenly, AirXpress can handle thousands of bookings without redundant updates. Queries are faster, cancellations are easier to track, and customer records stay clean.
+##### Problems in 1NF
+- Customer emails inconsistent.
+- Categories repeated thousands of times.
+- Updating prices requires editing multiple rows.
 
+**Step 1: 1NF (Flat Table)**
+![1NF](ecommerce_1NF.svg)
 
+**Step 2: 2NF**
+![2NF](ecommerce_2NF.svg)Order Details, Products & Categories.
 
+**Step 3: 3NF**
+![3NF](e-commerce 3NF.png)
+- Create Location table to reference the  for standardization.
 
-###  Case Study 2: Fleet Operations
+#### Conclusion
+Through this project, we have demonstrated how raw, redundant data can evolve into a clean, efficient, and scalable database design through the process of normalization.
 
-A logistics company, LogiFleet, manages over 200 delivery vehicles. Initially, they log driver names, licenses, vehicle registrations, maintenance types, mechanic names, and costs in a single sheet.
+By progressing from 1NF → 2NF → 3NF, we saw how a single unstructured table can be decomposed into three well-defined relational tables, each serving a distinct purpose while maintaining logical connections through primary and foreign keys.
 
-Problems soon arise:
+The transformation achieved several key goals:
 
-- Each vehicle’s registration is repeated for every service.
+- Redundancy reduction: Repeated information such as customer or product details was stored only once.
+- Data consistency: Changes made in one table automatically reflected across related entities.
+- Integrity and scalability: Relationships between entities became explicit, reducing anomalies and enabling more complex queries.
+- Analytical efficiency: Data became easier to join, aggregate, and analyze in dashboards or reports.
 
-- Drivers who operate the same vehicle appear again and again.
+In practical terms, this approach is foundational for data engineers, analysts, and database designers who build reliable pipelines and business intelligence systems.
+By breaking data into three interrelated tables, we’ve shown that normalization is not just a theoretical exercise — it’s a core principle for designing maintainable, high-quality data systems that scale with organizational growth.
 
-- Mechanics’ names are typed differently (Mike John vs. Michael John).
-
-By applying normalization:
-
-- Drivers, Vehicles, and Mechanics get their own tables.
-
-- Maintenance logs reference these entities by ID, not names.
-
-- Service types and costs are tracked independently.
-
-The result? LogiFleet can now generate precise reports like “Average maintenance cost per vehicle” or “Driver history per vehicle”, helping cut operational waste and improving accountability.
-
-
-
-
-###  Case Study 3: E-commerce (B2B/B2C)
-
-An online store, ShopHub, starts small, tracking all customers, products, and orders in a single Excel sheet. Each row lists the customer’s name/email, product name, category, quantity, and price.
-
-As sales grow, issues appear:
-
-- The same customer’s email is typed differently in multiple rows.
-
-- Product categories like “Electronics” are repeated thousands of times.
-
-- Changing a product’s price requires editing multiple rows.
-
-After normalization:
-
-- Customers are uniquely stored in a Customers table.
-
-- Products belong to Categories and have consistent prices.
-
-- Orders reference Customers, while OrderDetails link to Products.
-
-Now, ShopHub can analyze repeat customers, track sales by product category, and easily update pricing — enabling scalable e-commerce growth.
-
-
-
-
-
-###  Case Study 4: Fintech
-
-A fintech startup, PaySmart, handles digital transactions. Their early database tracks transaction ID, account number, customer details, merchant name, category, amount, and date all in one place.
-
-Problems start fast:
-
-- The same customer details are copied for every transaction.
-
-- Merchant categories like “Transport” or “E-commerce” are duplicated.
-
-- A customer with multiple accounts has their name and email repeated unnecessarily.
-
-Normalization fixes these issues:
-
-- Customers are separated from Accounts.
-
-- Transactions are linked to Accounts, not directly to customers.
-
-- Merchants and Categories get their own tables.
-
-With this model, PaySmart can now generate spending reports by category, detect suspicious account activity, and maintain consistent customer records across multiple accounts.
-
-
-
-
-
-
-
-###  Case Study 5: Foodtech
-
-A food delivery platform, Foodify, starts with a single table where every order lists the restaurant, location, customer details, menu item, category, quantity, and price.
-
-This quickly becomes problematic:
-
-- Restaurant names and addresses are repeated for every order.
-
-- Menu items are inconsistently typed (e.g., “Margherita Pizza” vs. “Margarita Pizza”).
-
-- Updating a menu price requires changing every related order row.
-
-After normalization:
-
-- Restaurants are stored once in a Restaurants table.
-
-- Customers live in a Customers table.
-
-- Menu items belong to Categories and Restaurants.
-
-- Orders link Customers and Restaurants, with OrderDetails handling menu items.
-
-Now, Foodify can answer critical business questions like:
-
-- Which restaurants generate the most revenue?
-
-- What are the top-selling dishes?
-
-- Which customers order most frequently?
+**Key takeaway: A well-normalized database leads to cleaner data, faster queries, and more meaningful insights — the cornerstone of every successful analytics and data engineering project.**
