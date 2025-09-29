@@ -10,7 +10,7 @@ This project aims to demonstrate data modeling with normalization, showing how t
 
 We walk through the normalization process step-by-step, starting with 1NF (First Normal Form) and progressing to 3NF (Third Normal Form), using real-world scenarios.
 
-### What is Normalization?
+## What is Normalization?
 
 Normalization is the process of organizing data in a database to reduce redundancy and improve integrity.
 
@@ -48,8 +48,7 @@ For each scenario, we will:
 - Move to 2NF – separate entities, remove partial dependencies.
 - Achieve 3NF – remove transitive dependencies, create a relational schema.
 
-### Case Studies
-#### Case Study 1: Flight & Airline Operations
+## Case Study 1: Flight & Airline Operations
 Imagine AirXpress, a regional airline where bookings are stored in a single spreadsheet.
 
 ##### Problems in 1NF
@@ -75,7 +74,7 @@ Imagine AirXpress, a regional airline where bookings are stored in a single spre
 *Result: Thousands of bookings managed without redundant updates.*
 
 
-#### Case Study 2: Fleet Operations
+## Case Study 2: Fleet Operations
 LogiFleet, a logistics company with 200+ vehicles, tracks drivers, vehicles, and services in one sheet.
 
 ##### Problems in 1NF
@@ -99,7 +98,7 @@ LogiFleet, a logistics company with 200+ vehicles, tracks drivers, vehicles, and
 
   
 
-#### Case Study 3: E-commerce (B2B & B2C)
+## Case Study 3: E-commerce (B2B & B2C)
 ShopHub, an online store, tracks all orders in a single Excel sheet.
 
 ##### Problems in 1NF
@@ -120,7 +119,7 @@ ShopHub, an online store, tracks all orders in a single Excel sheet.
 - Create Location table to reference the  for standardization.
 
 
-#### Conclusion
+## Conclusion
 Through this project, we have demonstrated how raw, redundant data can evolve into a clean, efficient, and scalable database design through the process of normalization.
 
 By progressing from 1NF → 2NF → 3NF, we saw how a single unstructured table can be decomposed into three well-defined relational tables, each serving a distinct purpose while maintaining logical connections through primary and foreign keys.
