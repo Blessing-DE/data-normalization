@@ -34,7 +34,7 @@ Normalization is the process of organizing data in a database to reduce redundan
 
 ### About This Project
 
-This project explores four real-world industry scenarios, each beginning with raw, unstructured data in 1NF and evolving into fully normalized tables in 3NF.
+This project explores three (3) real-world industry scenarios, each beginning with raw, unstructured data in 1NF and evolving into fully normalized tables in 3NF.
 
 #### Industries Covered
 - Flight & Airline Operations – managing flights, passengers, and bookings
