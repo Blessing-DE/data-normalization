@@ -60,18 +60,20 @@ Imagine AirXpress, a regional airline where bookings are stored in a single spre
 **Step 1:  1NF (Flat Table)**
 ![1NF](flight_1NF.svg)
 
+
 **Step 2: 2NF (Remove Partial Dependencies)**
 ![2NF](flight_2NF.svg)
 - Creates passengers table that stores passenger information.
 - Creates flights table stores flight details.
 - Creates bookings tables link passengers to flights.
 - Creates airlines table stores the airlines particularly.
+  
 
 **Step 3: 3NF (Remove Transitive Dependencies)**
 ![3NF](flight_3NF.svg)
 - Creates routes table stores data of all routes and links to the flights table
-
 *Result: Thousands of bookings managed without redundant updates.*
+
 
 #### Case Study 2: Fleet Operations
 LogiFleet, a logistics company with 200+ vehicles, tracks drivers, vehicles, and services in one sheet.
@@ -84,15 +86,18 @@ LogiFleet, a logistics company with 200+ vehicles, tracks drivers, vehicles, and
 **Step 1: 1NF (Flat Table)**
 ![1NF](maintenance_1NF.svg)
 
+
 **Step 2: 2NF**
 ![2NF](maintenance_2NF.svg)
 - Separate Drivers, Vehicles, Mechanics & Services.
+  
 
 **Step 3: 3NF**
 ![3NF](maintenance_3NF.svg)
 - Create Service Cost table for standardization.
+  *Result: Easy reporting of cost per vehicle, driver history, etc.*
 
-*Result: Easy reporting of cost per vehicle, driver history, etc.*
+  
 
 #### Case Study 3: E-commerce (B2B & B2C)
 ShopHub, an online store, tracks all orders in a single Excel sheet.
@@ -105,12 +110,15 @@ ShopHub, an online store, tracks all orders in a single Excel sheet.
 **Step 1: 1NF (Flat Table)**
 ![1NF](ecommerce_1NF.svg)
 
+
 **Step 2: 2NF**
 ![2NF](ecommerce_2NF.svg)Order Details, Products & Categories.
+
 
 **Step 3: 3NF**
 ![3NF](e-commerce_3NF.png)
 - Create Location table to reference the  for standardization.
+
 
 #### Conclusion
 Through this project, we have demonstrated how raw, redundant data can evolve into a clean, efficient, and scalable database design through the process of normalization.
