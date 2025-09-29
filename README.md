@@ -109,7 +109,7 @@ ShopHub, an online store, tracks all orders in a single Excel sheet.
 ![2NF](ecommerce_2NF.svg)Order Details, Products & Categories.
 
 **Step 3: 3NF**
-![3NF](e-commerce 3NF.png)
+![3NF](e-commerce_3NF.png)
 - Create Location table to reference the  for standardization.
 
 #### Conclusion
